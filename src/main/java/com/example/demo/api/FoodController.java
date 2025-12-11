@@ -3,6 +3,8 @@ package com.example.demo.api;
 import com.example.demo.entity.Food;
 import com.example.demo.service.foodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class FoodController {
     }
 
     @PostMapping
-    public void addFood(@RequestBody Food food)
+    public void addFood(@Validated @NonNull @RequestBody Food food)
     {
         foodservice.addFood(food);
     }
@@ -38,7 +40,7 @@ public class FoodController {
    }
 
    @PutMapping(path = "{name}")
-   public void updateFood(@PathVariable("name") String name,@RequestBody Food food)
+   public void updateFood(@PathVariable("name") String name,@Validated @NonNull @RequestBody Food food)
    {
        foodservice.updateFood(name, food);
    }
